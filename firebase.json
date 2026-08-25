@@ -1,0 +1,7 @@
+{
+  "firestore": {
+    "database": "ai-studio-paygatewaymobile-dec73450-e01f-4a1e-a1da-89a4770e3a14",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
+}

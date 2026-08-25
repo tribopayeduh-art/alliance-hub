@@ -1,0 +1,196 @@
+{
+  "entities": {
+    "users": {
+      "title": "Users",
+      "description": "Registered user accounts",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "referralCode": { "type": "string" },
+        "balance": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "email", "balance"]
+    },
+    "transactions": {
+      "title": "Transactions",
+      "description": "Financial deposits and withdrawals",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "type": { "type": "string", "enum": ["deposit", "withdrawal"] },
+        "amount": { "type": "number" },
+        "status": { "type": "string", "enum": ["approved", "pending", "rejected"] },
+        "paymentMethod": { "type": "string" },
+        "description": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "type", "amount", "status"]
+    },
+    "affiliates": {
+      "title": "Affiliate Info",
+      "description": "Affiliate metrics and referral tracking",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "referralCode": { "type": "string" },
+        "status": { "type": "string" },
+        "commissionTotal": { "type": "number" },
+        "affiliateBalance": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "referralCode"]
+    },
+    "referrals": {
+      "title": "Referrals",
+      "description": "Referred users history",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "affiliateId": { "type": "string" },
+        "referredUserId": { "type": "string" },
+        "referralCode": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "affiliateId", "referredUserId"]
+    },
+    "games": {
+      "title": "Games",
+      "description": "Catalog of platform games",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "provider": { "type": "string" },
+        "status": { "type": "string" },
+        "minBet": { "type": "number" }
+      },
+      "required": ["id", "name", "category"]
+    },
+    "gameStats": {
+      "title": "Game Stats",
+      "description": "User game statistics and records",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "highScore": { "type": "number" },
+        "gamesPlayed": { "type": "number" },
+        "linesCleared": { "type": "number" },
+        "maxCombo": { "type": "number" },
+        "level": { "type": "number" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "highScore"]
+    },
+    "gameSessions": {
+      "title": "Game Sessions",
+      "description": "History of played game sessions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "score": { "type": "number" },
+        "lines": { "type": "number" },
+        "maxCombo": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "score"]
+    },
+    "affiliateCommissions": {
+      "title": "Affiliate Commissions",
+      "description": "Commercial event commissions for affiliates",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "affiliateId": { "type": "string" },
+        "referrerUserId": { "type": "string" },
+        "buyerUserId": { "type": "string" },
+        "transactionId": { "type": "string" },
+        "amount": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "affiliateId", "transactionId", "amount"]
+    },
+    "gameBets": {
+      "title": "Game Bets",
+      "description": "Apostas e liquidações únicas do Block Win e Zumbla Win",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "gameId": { "type": "string" },
+        "betAmount": { "type": "number" },
+        "multiplier": { "type": "number" },
+        "payoutAmount": { "type": "number" },
+        "status": { "type": "string", "enum": ["active", "cashed_out", "lost"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "gameId", "betAmount", "status"]
+    },
+    "gameConfigs": {
+      "title": "Game Configs",
+      "description": "Configuração e métricas agregadas por jogo",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "status": { "type": "string" },
+        "rtpPercent": { "type": "number" },
+        "totalWagered": { "type": "number" },
+        "totalPayout": { "type": "number" },
+        "ggr": { "type": "number" }
+      },
+      "required": ["id", "name", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "User profile data"
+    },
+    "/transactions/{transactionId}": {
+      "schema": "transactions",
+      "description": "Financial transaction history"
+    },
+    "/affiliates/{affiliateId}": {
+      "schema": "affiliates",
+      "description": "Affiliate accounts and metrics"
+    },
+    "/referrals/{referralId}": {
+      "schema": "referrals",
+      "description": "Referral links between affiliates and users"
+    },
+    "/games/{gameId}": {
+      "schema": "games",
+      "description": "Available platform games"
+    },
+    "/gameStats/{userId}": {
+      "schema": "gameStats",
+      "description": "User game statistics and records"
+    },
+    "/gameSessions/{sessionId}": {
+      "schema": "gameSessions",
+      "description": "Historical game session scores"
+    },
+    "/affiliateCommissions/{commissionId}": {
+      "schema": "affiliateCommissions",
+      "description": "Commercial sales commissions history"
+    },
+    "/gameBets/{betId}": {
+      "schema": "gameBets",
+      "description": "Apostas dos jogos com liquidação única"
+    },
+    "/gameConfigs/{gameId}": {
+      "schema": "gameConfigs",
+      "description": "Configuração e métricas dos jogos"
+    }
+  }
+}
