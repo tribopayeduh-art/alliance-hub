@@ -469,7 +469,7 @@ export default function ZumblaExact() {
           <strong>WIN</strong>
         </button>
         <div className="player-level">
-          <img className="level-avatar" src="/zumbla/level-avatar.webp" alt="Avatar do jogador" width="48" height="48" decoding="async" />
+          <img className="level-avatar" src="/zumbla/avatar.webp" alt="Avatar do jogador" width="48" height="48" decoding="async" />
           <div className="level-info">
             <div className="level-label"><small>NÍVEL 12</small><b>72%</b></div>
             <div className="level-track" role="progressbar" aria-label="Progresso do nível 12" aria-valuenow={72} aria-valuemin={0} aria-valuemax={100}><i /></div>
@@ -530,7 +530,7 @@ export default function ZumblaExact() {
                 disabled={balance < bet}
                 onClick={() => setPlaying(true)}
               >
-                <img src="/zumbla/ui-buttons/play-now.webp" alt="Jogar agora" />
+                <img src="/zumbla/ui-buttons/play.webp" alt="Jogar agora" />
               </button>
             </div>
             {balance < bet && (

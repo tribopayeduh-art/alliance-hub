@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "tsx server.ts",
     "verify:assets": "node scripts/verify-game-assets.mjs",
-    "prebuild": "npm run verify:assets",
     "build:zumbla": "esbuild src/zumbla-exact/main.tsx --bundle --minify --format=esm --external:/zumbla/* --outfile=public/zumbla/app/app.js",
-    "build": "npm run build:zumbla && vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
+    "prebuild": "npm run build:zumbla && npm run verify:assets",
+    "build": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
     "start": "node dist/server.cjs",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"
